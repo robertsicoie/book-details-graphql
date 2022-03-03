@@ -1,0 +1,17 @@
+.title {
+    font-weight: bold;
+}
+
+.author {
+    font-style: italic;
+}
+
+.book {
+    width: 200px;
+    height: 250px;
+    border: 1px solid black;
+    border-radius: 15px;
+    border-color: black;
+    padding: 5px;
+    margin: 5px;
+}
