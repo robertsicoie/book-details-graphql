@@ -28,12 +28,23 @@ export const ADD_BOOK = gql`
 mutation PostMutation(
     $name: String!
     $pageCount: Int
-    $authorId: String
+    $authorId: ID
+    $firstName: String
+    $lastName: String
 ) {
-    addBook(name: $name, pageCount:$pageCount, authorId: $authorId) {
+    addBook(book:{
+        name: $name
+        pageCount:$pageCount
+        author: {
+          id: $authorId
+          firstName: $firstName
+          lastName: $lastName
+  }}) {
+      id
       name
       pageCount
       author {
+        id
         firstName
         lastName
       }

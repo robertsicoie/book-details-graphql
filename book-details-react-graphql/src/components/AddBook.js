@@ -33,12 +33,16 @@ const AddBook = ({client}) => {
     });
 
     const {
-        data,
         loading,
+        data,
         error,
+        refetch
     } = useQuery(QUERY_AUTHORS, {
         fetchPolicy: "cache-and-network"
     });
+
+    if (loading) return null;
+    {error && <pre>{JSON.stringify(error, null, 2)}</pre>}
 
     return (
         <div className='add-book component'>
@@ -65,27 +69,22 @@ const AddBook = ({client}) => {
                     value={formState.pageCount}
                     onChange={(e) => setFormState({
                         ...formState,
-                        pageCount: e.target.value
+                        pageCount: parseInt(e.target.value)
                     })}
                     type='text'
                     placeholder='Number of pages' />
                 </label>
-                {/* <input 
-                    value={formState.authorId}
-                    onChange={(e) => setFormState({
-                        ...formState,
-                        authorId: e.target.value
-                    })}
-                    type='text'
-                    placeholder='Author id' /> */}
-                
-                {console.log('here' + JSON.stringify(data, null, 2))}
                 <label>Author
-                    <select> 
-                    {data && data.authors.map((author) => {
-                        <option name={author.id}>{author.firstname} {author.lastName}</option>
-                    })}
-                    <option name='1'>aha</option>
+                    <select 
+                        value={formState.authorId}
+                        onChange={(e) => setFormState({
+                            ...formState,
+                            authorId: e.target.value
+                        })}> 
+                    {data.authors.map((author) => (
+                        <option value={author.id} name={author.id}>{author.firstName} {author.lastName}</option>
+                    ))}
+                        <option name='other'>Other... (todo)</option>
                     </select>
                 </label>
                 <button type='submit'>Submit</button>

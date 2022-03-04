@@ -10,7 +10,7 @@ const Header = () => {
         <div className='menu component'>
             <div className='menuitem'>
                 <div className='menuitem'>
-                    <Link to='/home'>
+                    <Link to='/'>
                         <div>Library</div>
                     </Link>
                 </div>

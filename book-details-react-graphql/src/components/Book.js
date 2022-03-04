@@ -9,7 +9,8 @@ const Book = (props) => {
 
     return (
         <div className='book'>
-            <div className='title'>{book.name}</div> <Author author={book.author} />
+            <Author author={book.author} />
+            <div className='title'>{book.name}</div> 
             <div>{book.pageCount} pages</div>
         </div>
 
